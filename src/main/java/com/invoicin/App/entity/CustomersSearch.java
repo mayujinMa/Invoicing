@@ -2,21 +2,17 @@ package com.invoicin.App.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class CustomersSearch {
-	
 	private Integer customerId;
 	private String customerName;
 	private String customerPhone;
 	private String credentials;//身份证号
-	//private Date customerBirthday;
+//	@DateTimeFormat(pattern="yyyy-MM-dd")
+//	private Date customerBirthday;
+	private String customerBirthday;
 	private String remark;
 	public Integer getCustomerId() {
 		return customerId;
@@ -42,12 +38,12 @@ public class CustomersSearch {
 	public void setCredentials(String credentials) {
 		this.credentials = credentials;
 	}
-//	public Date getCustomerBirthday() {
-//		return customerBirthday;
-//	}
-//	public void setCustomerBirthday(Date customerBirthday) {
-//		this.customerBirthday = customerBirthday;
-//	}
+	public String getCustomerBirthday() {
+		return customerBirthday;
+	}
+	public void setCustomerBirthday(String customerBirthday) {
+		this.customerBirthday = customerBirthday;
+	}
 	public String getRemark() {
 		return remark;
 	}
@@ -55,13 +51,13 @@ public class CustomersSearch {
 		this.remark = remark;
 	}
 	public CustomersSearch(Integer customerId, String customerName, String customerPhone, String credentials,
-			Date customerBirthday, String remark) {
+			String customerBirthday, String remark) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerPhone = customerPhone;
 		this.credentials = credentials;
-		//this.customerBirthday = customerBirthday;
+		this.customerBirthday = customerBirthday;
 		this.remark = remark;
 	}
 	public CustomersSearch() {

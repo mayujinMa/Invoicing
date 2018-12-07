@@ -11,6 +11,7 @@ import com.invoicin.App.entity.ProvinceInfo;
 import com.invoicin.App.service.ProvinceService;
 
 @RestController
+@RequestMapping("/province")
 public class ProvinceController {
 	@Autowired
 	private ProvinceService pService;

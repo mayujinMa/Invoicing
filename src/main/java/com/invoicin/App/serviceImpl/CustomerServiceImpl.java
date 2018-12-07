@@ -60,6 +60,42 @@ public class CustomerServiceImpl implements CustomerService{
 			}
 		};
 	}
+	@Override
+	public Integer updCus(Integer customerId, String credentials, String customerBirthday, String customerName,
+			String customerPhone, String remark) {
+		// TODO Auto-generated method stub
+		return cusdao.updCustomer(customerId, credentials, customerBirthday, customerName, customerPhone, remark);
+	}
+	@Override
+	public Customers addCustomer(Customers cus) {
+		// TODO Auto-generated method stub
+		return cusdao.save(cus);
+	}
+	@Override
+	public List<Customers> findByCredentials(String credentials) {
+		// TODO Auto-generated method stub
+		return cusdao.findByCredentials(credentials);
+	}
+	@Override
+	public Customers selByCustomerId(Integer customerId) {
+		// TODO Auto-generated method stub
+		return cusdao.getOne(customerId);
+	}
+	@Override
+	public Integer selCountCustomerId(Integer customerId) {
+		// TODO Auto-generated method stub
+		return cusdao.selCountCustomerId(customerId);
+	}
+	@Override
+	public Integer delCustCompByCustId(Integer customerId) {
+		// TODO Auto-generated method stub
+		return cusdao.delCustCompByCustId(customerId);
+	}
+	@Override
+	public Integer delByCusId(Integer customerId) {
+		// TODO Auto-generated method stub
+		return cusdao.delByCusId(customerId);
+	}
 	
-
+	
 }
