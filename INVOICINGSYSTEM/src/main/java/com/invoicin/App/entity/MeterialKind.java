@@ -1,14 +1,25 @@
 package com.invoicin.App.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,6 +41,10 @@ public class MeterialKind {
 	@Transient
 	private Boolean setChecked;
 	
-	
+	@ManyToMany
+	@JoinTable(name = "metrial_kind", joinColumns = {
+			@JoinColumn(name = "kindId") }, inverseJoinColumns = { @JoinColumn(name = "meterialId") })
+	@NotFound(action = NotFoundAction.IGNORE)
+	private List<Meterial> meterial;
 	
 }

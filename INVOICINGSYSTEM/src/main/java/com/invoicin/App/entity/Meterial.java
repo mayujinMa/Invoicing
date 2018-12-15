@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,10 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -53,18 +53,14 @@ public class Meterial {
 	private Integer exct1; // 预留字段
 	// 实现原材料属于哪个仓库
 	//@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER)
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
+	@ManyToMany(fetch = FetchType.EAGER,cascade= { CascadeType.ALL })
 	@JoinTable(name = "materialNamewithwarehouseid", joinColumns = {
 			@JoinColumn(name = "meterialId") }, inverseJoinColumns = { @JoinColumn(name = "warehouseid") })
 	@NotFound(action = NotFoundAction.IGNORE)
 	private Set<Warehouse> warehouses = new HashSet<Warehouse>();
 	
-	//@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "metrial_kind", joinColumns = {
-			@JoinColumn(name = "meterialId") }, inverseJoinColumns = { @JoinColumn(name = "kindId") })
-	@NotFound(action = NotFoundAction.IGNORE)
-	private List<MeterialKind> kind = new ArrayList<MeterialKind>();
+//	@JoinTable(name = "metrial_kind", joinColumns = {
+//			@JoinColumn(name = "meterialId") }, inverseJoinColumns = { @JoinColumn(name = "kindId") })
+//	@NotFound(action = NotFoundAction.IGNORE)
 	
 }
